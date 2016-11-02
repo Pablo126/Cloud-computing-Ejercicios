@@ -1,4 +1,4 @@
-# Cloud computing
+# Cloud Computing
 ## Ejercicios tema 1
 
 ### Ejercicio 1
