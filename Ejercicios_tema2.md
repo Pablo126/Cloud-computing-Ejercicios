@@ -58,3 +58,36 @@
   ```
 
 ## Ejercicio 2
+#### Crear una receta para instalar nginx, tu editor favorito y algún directorio y fichero que uses de forma habitual.
+
+1. Creamos el directorio para la receta de nginx
+
+  *mkdir -p chef/cookbooks/nginx/recipes*
+
+2. Dentro de el creamos el archivo *default.rb* con el siguiente contenido:
+
+    ```
+    package 'nginx'
+    directory '/home/ubuntu/Facultad/ejercicio2'
+    file "/home/ubuntu/Facultad/ejericio2/LEEME" do
+    	owner "ubuntu"
+    	group "ubuntu"
+    	mode 00544
+    	action :create
+    	content "Directorio para ejercicio2"
+    end
+    ```
+    *Este archivo contiene la receta para instalar nginx, crear un directorio y crear un archivo dentro del directorio.*
+
+3. Modificamos el archivo *node.json* creado previamente para el ejecicio 1, dejandolo de la siguiente forma:
+
+  ```
+  {
+	"run_list": [ "recipe[emacs]","recipe[nginx]" ]
+  }
+  ```
+4. Ejecutamos
+
+  ```
+  sudo chef-solo -c solo.rb
+  ```
