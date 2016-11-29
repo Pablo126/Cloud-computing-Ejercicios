@@ -110,3 +110,53 @@ tres:
       - 10
       - 11
 ```
+
+## Ejercicio 5
+
+#### Desplegar los fuentes de una aplicación cualquiera, propia o libre, que se encuentre en un servidor git público en la máquina virtual Azure (o una máquina virtual local) usando ansible.
+
+1. Creamos nuestra máquina virtual en Azure
+
+  *Creando máquina virtual en Azure*:
+  ![alt text](azure.png "Instalación de nginx con receta chef")
+
+2. Instalamos Ansible en nuestro sistema local:
+
+  ```
+  sudo pip install paramiko PyYAML jinja2 httplib2 ansible
+  ```
+
+3. Creamos el fichero ~/.ansible_host:
+  ```
+  [Ubuntu]
+  104.40.149.210 ansible_ssh_user='pablo126' ansible_ssh_public_key_file=~/ssh/id_rsa
+  ```
+
+4. Añadimos la variable de entorno de ansible:
+  ```
+  export ANSIBLE_HOST=~/.ansible_hosts
+  ```
+5. Comprobamos que todo esta correcto, realizando un ping a la máquina virtual:
+
+  *Comprobando configuración Ansible*:
+  ![alt text](ansible.png "Instalación de nginx con receta chef")
+
+6. Instalamos las dependencias que necesitemos:
+
+  ```
+  ansible Ubuntu -m command -a "sudo apt-get update"
+  ansible Ubuntu -m command -a "sudo apt-get install python-pip"
+  ansible Ubuntu -m command -a "sudo pip install django"
+  ansible Ubuntu -m command -a "sudo apt-get --assume-yes install git"
+  ```
+
+7. Descargamos el repositorio de echaequipos
+  ```
+  ansible Ubuntu -m git -a
+   "repo=https://github.com/Pablo126/echaequipos.git
+    dest=~/echaequipos version=HEAD"
+  ```
+8. Ejecutamos la aplicación y comprobamos que corre en el servidor.
+
+  *Ejecutndo echaequipos en azure*:
+  ![alt text](echaequipos.png "Echaequipos ejecución en azure")
