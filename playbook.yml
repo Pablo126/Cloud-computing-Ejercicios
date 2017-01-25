@@ -1,0 +1,14 @@
+- hosts: all
+  sudo: true
+  tasks:
+  - name: Actualizar cache
+    apt: update_cache=yes
+  - name: Instalar MongoDB
+    apt: name=mongodb state=present
+  - name: Instalar Git
+    apt: name=git state=present
+  - name: Instalar Pip
+    apt: name=python-setuptools state=present
+    apt: name=python-dev state=present
+    apt: name=python-pip state=present
+

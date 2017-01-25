@@ -1,0 +1,5 @@
+export ACCESS_KEY_ID='AKIAIJ6JAWBXK2RFNN7A'
+export SECRET_ACCESS_KEY='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'
+export PRIVATE_KEY_NAME='mykey_ireland'
+export SECURITY_GROUP='default'
+export PRIVATE_KEY_PATH='/home/pablo/Facultad/mykey_ireland.pem'
